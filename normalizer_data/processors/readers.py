@@ -13,9 +13,10 @@ class TextsReaderProcess(Process):
         super().__init__(daemon=True)
         self.output_queue = out_text_queue
         self.all_texts = list(Path(directory_path).glob('**/*.txt'))
+        print(f'Overall number of texts: {len(self.all_texts)}')
 
     def run(self) -> None:
-        for i, text in self.all_texts:
+        for i, text in enumerate(self.all_texts):
             with open(str(text)) as input_file:
                 text_data = input_file.read().strip()
                 self.output_queue.put((i, text_data))
