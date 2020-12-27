@@ -1,4 +1,5 @@
 import argparse
+from multiprocessing import get_context
 from multiprocessing.queues import Queue
 from pathlib import Path
 
@@ -41,9 +42,9 @@ if __name__ == '__main__':
 
     args = parse_args()
 
-    texts_queue = Queue(maxsize=MAX_TEXT_QUEUE_SIZE)
-    sentences_queue = Queue(maxsize=MAX_SENTENCES_QUEUE_SIZE)
-    pairs_queue = Queue(maxsize=MAX_SENTENCES_QUEUE_SIZE)
+    texts_queue = Queue(maxsize=MAX_TEXT_QUEUE_SIZE, ctx=get_context())
+    sentences_queue = Queue(maxsize=MAX_SENTENCES_QUEUE_SIZE, ctx=get_context())
+    pairs_queue = Queue(maxsize=MAX_SENTENCES_QUEUE_SIZE, ctx=get_context())
 
     reader = TextsReaderProcess(directory_path=args.texts_path, out_text_queue=texts_queue)
     sentence_tokenizers = [

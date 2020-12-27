@@ -12,7 +12,7 @@ class TextsReaderProcess(Process):
     def __init__(self, directory_path: Union[str, Path], out_text_queue: Queue):
         super().__init__(daemon=True)
         self.output_queue = out_text_queue
-        self.all_texts = Path(directory_path).glob('**/*.txt')
+        self.all_texts = list(Path(directory_path).glob('**/*.txt'))
 
     def run(self) -> None:
         for text in self.all_texts:
