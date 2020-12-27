@@ -35,4 +35,4 @@ class NumbersNormalizationProducer(Process):
                 if result is not None:
                     sentence, replaced = result
                     string_to_write = sentence + '<sep>' + replaced
-                    self.output_queue.put(text_num, string_to_write)
+                    self.output_queue.put((text_num, string_to_write))
