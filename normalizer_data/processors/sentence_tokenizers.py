@@ -21,6 +21,7 @@ class SentenceTokenizerProcess(Process):
                 self.output_queue.put(END_OF_RESOURCES_SENTINEL)
                 break
             else:
+                text_num, text = text
                 sentences = [s.text for s in sentenize(text)]
                 for s in sentences:
-                    self.output_queue.put(s)
+                    self.output_queue.put(text_num, s)

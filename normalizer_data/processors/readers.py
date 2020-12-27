@@ -15,8 +15,8 @@ class TextsReaderProcess(Process):
         self.all_texts = list(Path(directory_path).glob('**/*.txt'))
 
     def run(self) -> None:
-        for text in self.all_texts:
+        for i, text in self.all_texts:
             with open(str(text)) as input_file:
                 text_data = input_file.read().strip()
-                self.output_queue.put(text_data)
+                self.output_queue.put((i, text_data))
         self.output_queue.put(END_OF_RESOURCES_SENTINEL)

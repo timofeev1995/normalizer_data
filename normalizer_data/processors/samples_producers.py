@@ -30,8 +30,9 @@ class NumbersNormalizationProducer(Process):
                 self.output_queue.put(END_OF_RESOURCES_SENTINEL)
                 break
             else:
+                text_num, sentence = sentence
                 result = numericalize_text(sentence, extractor=self.extractor)
                 if result is not None:
                     sentence, replaced = result
                     string_to_write = sentence + '<sep>' + replaced
-                    self.output_queue.put(string_to_write)
+                    self.output_queue.put(text_num, string_to_write)
