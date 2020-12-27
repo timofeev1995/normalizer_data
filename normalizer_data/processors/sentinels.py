@@ -1,0 +1,1 @@
+END_OF_RESOURCES_SENTINEL = 'eos_sentinel'
