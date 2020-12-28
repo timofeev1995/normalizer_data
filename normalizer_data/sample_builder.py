@@ -4,7 +4,7 @@ from typing import Dict
 import numpy as np
 
 from normalizer_data.numericals.extractor import NumberExtractor
-from normalizer_data.numericals.utils import numericalize_text
+from normalizer_data.numericals.utils import numericalize_text, has_digits
 from normalizer_data.shorteners.shorteners_model import get_shorteners_model
 
 
@@ -18,7 +18,7 @@ def has_latin(text):
 def build_sample(text: str, number_extractor: NumberExtractor, shortener_model: Dict):
 
     changes = 0
-    if has_latin(text):
+    if has_latin(text) or has_digits(text):
         return None
 
     for term, model in shortener_model.items():
