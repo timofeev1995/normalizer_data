@@ -33,7 +33,7 @@ class NumbersNormalizationProducer(Process):
                 break
             else:
                 text_num, sentence = sentence
-                result = build_sample(text, self.extractor, self.shortener_model)
+                result = build_sample(sentence, self.extractor, self.shortener_model)
                 if result is not None:
                     replaced, num_changes, changes = result
                     string_to_write = sentence + '<sep>' + replaced
