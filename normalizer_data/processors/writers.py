@@ -43,4 +43,10 @@ class TextsWriterProcess(Process):
                     numeric_changes += num_changes
                     shortener_changes += changes
                     max_text_num = max(max_text_num, text_num)
-                    self._update_bar(infobar, number_of_collected_samples, max_text_num, num_changes, changes)
+                    self._update_bar(
+                        infobar,
+                        number_of_collected_samples,
+                        max_text_num,
+                        numeric_changes,
+                        shortener_changes
+                    )
