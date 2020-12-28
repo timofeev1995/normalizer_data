@@ -1,6 +1,5 @@
 from .numbers import NUMBER
 from natasha.extractors import Extractor
-from yargy.parser import Match
 
 
 class NumberExtractor(Extractor):

@@ -1,4 +1,4 @@
-from yargy import rule, or_
+from yargy import rule, or_, not_, and_
 from yargy.pipelines import morph_pipeline, caseless_pipeline
 from yargy.interpretation import fact, const
 from yargy.predicates import eq, caseless, normalized, type
@@ -53,22 +53,18 @@ INT = type('INT')
 THOUSANDTH = rule(caseless_pipeline(['тысячных', 'тысячная'])).interpretation(const(10**-3))
 HUNDREDTH = rule(caseless_pipeline(['сотых', 'сотая'])).interpretation(const(10**-2))
 TENTH = rule(caseless_pipeline(['десятых', 'десятая'])).interpretation(const(10**-1))
+
 THOUSAND = or_(
-    rule(caseless('т'), DOT),
-    rule(caseless('тыс'), DOT.optional()),
     rule(normalized('тысяча')),
     rule(normalized('тыща'))
 ).interpretation(const(10**3))
 MILLION = or_(
-    rule(caseless('млн'), DOT.optional()),
     rule(normalized('миллион'))
 ).interpretation(const(10**6))
 MILLIARD = or_(
-    rule(caseless('млрд'), DOT.optional()),
     rule(normalized('миллиард'))
 ).interpretation(const(10**9))
 TRILLION = or_(
-    rule(caseless('трлн'), DOT.optional()),
     rule(normalized('триллион'))
 ).interpretation(const(10**12))
 MULTIPLIER = or_(
@@ -80,6 +76,7 @@ MULTIPLIER = or_(
     MILLIARD,
     TRILLION
 ).interpretation(Number.multiplier)
+
 NUM_RAW = rule(morph_pipeline(NUMS_RAW).interpretation(Number.int.normalized().custom(NUMS_RAW.get)))
 NUM_INT = rule(INT).interpretation(Number.int.custom(int))
 NUM = or_(

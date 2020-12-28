@@ -17,6 +17,14 @@ class TextsWriterProcess(Process):
         self.out_path = out_path
         self.max_samples = max_samples
 
+    def _update_bar(self, bar, collected, text_num, numeric_changes, shortener_changes):
+        bar.set_postfix_str(
+            f'Collected: {collected}, '
+            f'texts processed: {text_num}, '
+            f'numeric_changes: {numeric_changes}, ',
+            f'shortener_changes: {shortener_changes}'
+        )
+
     def run(self) -> None:
         number_of_collected_samples = 0
         max_text_num = 0
@@ -27,8 +35,8 @@ class TextsWriterProcess(Process):
                 if (sample_to_write == END_OF_RESOURCES_SENTINEL) or (number_of_collected_samples > self.max_samples):
                     break
                 else:
-                    text_num, sample_to_write = sample_to_write
+                    text_num, sample_to_write, num_changes, changes = sample_to_write
                     output_file.write(sample_to_write + '\n<sample_sep>\n')
                     number_of_collected_samples += 1
                     max_text_num = max(max_text_num, text_num)
-                    infobar.set_postfix_str(f'Collected: {number_of_collected_samples}, texts processed: {max_text_num}')
+                    self._update_bar(infobar, number_of_collected_samples, max_text_num, num_changes, changes)

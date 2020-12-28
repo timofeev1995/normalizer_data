@@ -1,8 +1,9 @@
 from multiprocessing import Queue, Process
 
 from normalizer_data.numericals.extractor import NumberExtractor
-from normalizer_data.numericals.utils import numericalize_text
 from normalizer_data.processors.sentinels import END_OF_RESOURCES_SENTINEL
+from normalizer_data.sample_builder import build_sample
+from normalizer_data.shorteners.shorteners_model import get_shorteners_model
 
 
 class NumbersNormalizationProducer(Process):
@@ -13,6 +14,7 @@ class NumbersNormalizationProducer(Process):
         super().__init__(daemon=True)
         self.input_queue = input_queue
         self.output_queue = out_queue
+        self.shortener_model = get_shorteners_model()
         self._extractor = None
 
     @property
@@ -31,8 +33,8 @@ class NumbersNormalizationProducer(Process):
                 break
             else:
                 text_num, sentence = sentence
-                result = numericalize_text(sentence, extractor=self.extractor)
+                result = build_sample(text, self.extractor, self.shortener_model)
                 if result is not None:
-                    sentence, replaced = result
+                    replaced, num_changes, changes = result
                     string_to_write = sentence + '<sep>' + replaced
-                    self.output_queue.put((text_num, string_to_write))
+                    self.output_queue.put((text_num, string_to_write, num_changes, changes))
