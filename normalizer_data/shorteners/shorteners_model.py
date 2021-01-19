@@ -91,6 +91,4 @@ def get_shorteners_model():
         assert sum(ps) == 1.
         assert len(all_forms) > 0
 
-        print(term, regvar)
-
     return model

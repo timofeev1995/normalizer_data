@@ -25,11 +25,12 @@ def build_sample(text: str, number_extractor: NumberExtractor, shortener_model: 
         while True:
             found = re.search(model['regvar'], text)
             if found is not None:
-                if np.random.rand() > model['same_prob']:
+                coin = np.random.rand()
+                if coin > model['same_prob']:
                     text = text.replace(found.group(2), model['token'])
                 else:
                     text = text.replace(found.group(2), found.group(2) + 'selftoken')
-                    changes += 1
+                changes += 1
             else:
                 text = text.replace('selftoken', '')
                 break
