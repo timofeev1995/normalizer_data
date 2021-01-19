@@ -18,7 +18,7 @@ SHORTENERS_MODEL = {
     # space
     'гектар': {'shorteners': {'га': 0.3, 'га.': 0.7}, 'same_prob': 0.2, 'token': 'square_a'},
     # time
-    'век': {'shorteners': {'в': 0.1, 'в.': 0.6, 'век.': 0.3}, 'same_prob': 0.2, 'token': 'time_a'},
+    'веков': {'shorteners': {'в': 0.1, 'в.': 0.6, 'век.': 0.3}, 'same_prob': 0.2, 'token': 'time_a'},
     'год': {'shorteners': {'г.': 0.7, 'г': 0.3}, 'same_prob': 0.2, 'token': 'time_b', 'exclusions': ['лет']},
     'месяц': {'shorteners': {'мес.': 0.7, 'мес': 0.3}, 'same_prob': 0.2, 'token': 'time_с'},
     'день': {'shorteners': {'д.': 0.7, 'д': 0.3}, 'same_prob': 0.2, 'token': 'time_d'},
@@ -56,8 +56,8 @@ SHORTENERS_MODEL = {
     'в том числе': {'shorteners': {'в т. ч.': 0.9, 'в том ч.': 0.1}, 'same_prob': 0.2, 'token': 'short_a', 'exact': True},
     'и так далее': {'shorteners': {'и т. д.': 0.2, 'итд.': 0.2, 'и т.д.': 0.2, 'итд': 0.2, 'и т д': 0.2}, 'same_prob': 0.2, 'token': 'short_b', 'exact': True},
     'и тому подобное': {'shorteners': {'и т. п.': 0.2, 'итп.': 0.2, 'и т.п.': 0.2, 'итп': 0.2, 'и т п': 0.2}, 'same_prob': 0.2, 'token': 'short_c', 'exact': True},
-    'и другие': {'shorteners': {'и др.': 0.5, 'и др': 0.5}, 'same_prob': 0.2, 'token': 'short_d', 'exact': True},
-    'и прочие': {'shorteners': {'и пр.': 0.5, 'и пр': 0.5}, 'same_prob': 0.2, 'token': 'short_e', 'exact': True},
+    'и другиe': {'shorteners': {'и др.': 0.5, 'и др': 0.5}, 'same_prob': 0.2, 'token': 'short_d', 'exact': True},
+    'и прочиe': {'shorteners': {'и пр.': 0.5, 'и пр': 0.5}, 'same_prob': 0.2, 'token': 'short_e', 'exact': True},
     'кандидат технических наук': {'shorteners': {'к. т. н..': 0.9, 'к т н': 0.1}, 'same_prob': 0.2, 'token': 'short_f'},
     'кандидат медицинских наук': {'shorteners': {'к. м. н..': 0.9, 'к м н': 0.1}, 'same_prob': 0.2, 'token': 'short_g'},
 }
@@ -89,5 +89,8 @@ def get_shorteners_model():
 
         ps = [v for k, v in model[term]['shorteners'].items()]
         assert sum(ps) == 1.
+        assert len(all_forms) > 0
+
+        print(term, regvar)
 
     return model

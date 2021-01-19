@@ -1,6 +1,6 @@
 from multiprocessing import Queue, Process
 from pathlib import Path
-from typing import Union, Optional
+from typing import Union
 
 from tqdm import tqdm
 
