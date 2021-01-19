@@ -69,7 +69,11 @@ def get_shorteners_model():
     model = SHORTENERS_MODEL.copy()
     for term, inner_dict in model.items():
 
-        exclusions = inner_dict['exclusions']
+        if 'exclusions' in inner_dict:
+            exclusions = inner_dict['exclusions']
+        else:
+            exclusions = []
+
         if 'exact' not in inner_dict:
             all_forms = set(
                 [
