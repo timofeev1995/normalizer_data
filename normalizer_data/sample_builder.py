@@ -5,7 +5,6 @@ import numpy as np
 
 from normalizer_data.numericals.extractor import NumberExtractor
 from normalizer_data.numericals.utils import numericalize_text, has_digits
-from normalizer_data.shorteners.shorteners_model import get_shorteners_model
 
 
 def has_latin(text):

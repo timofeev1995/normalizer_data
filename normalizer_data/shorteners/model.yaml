@@ -1,0 +1,263 @@
+# Structure:
+# group_name:
+#   - word/occurrence
+#     - shorteners:
+#       - replace: probability
+#       - replace: probability
+#     - exact: true - in case when we replace ONLY this occurrence (not all forms)
+#     - exclusions:
+#       - word form which we don't replace
+#       - word form which we don't replace
+#     - same_prob: probability NOT too replace occurrence
+
+numericals:
+  тысяча:
+    shorteners:
+      т.: 0.2
+      тыс: 0.4
+      тыс.: 0.4
+  миллион:
+    shorteners:
+      млн: 0.5
+      млн.: 0.5
+  миллиард:
+    shorteners:
+      млрд: 0.5
+      млрд.: 0.5
+
+length:
+  миллиметр:
+    shorteners:
+      мм: 0.5
+      мм.: 0.5
+  сантиметр:
+    shorteners:
+      см: 0.5
+      см.: 0.5
+  метр:
+    shorteners:
+      м: 0.5
+      м.: 0.5
+  километр:
+    shorteners:
+      км: 0.5
+      км.: 0.5
+  миллилитр:
+    shorteners:
+      мл: 0.5
+      мл.: 0.5
+
+volume:
+  литр:
+    shorteners:
+      л: 0.5
+      л.: 0.5
+
+squares:
+  гектар:
+    shorteners:
+      га: 0.3
+      га.: 0.7
+
+time:
+  веков:
+    shorteners:
+      в: 0.1
+      в.: 0.6
+      век.: 0.3
+  год:
+    exclusions:
+      лет
+    shorteners:
+      г: 0.3
+      г.: 0.7
+  месяц:
+    shorteners:
+      мес: 0.3
+      мес.: 0.7
+  день:
+    shorteners:
+      д: 0.3
+      д.: 0.7
+  час:
+    shorteners:
+      ч: 0.3
+      ч.: 0.7
+  минута:
+    shorteners:
+      мин: 0.3
+      мин.: 0.7
+  секунда:
+    shorteners:
+      с.: 0.2
+      сек: 0.3
+      сек.: 0.5
+  неделя:
+    shorteners:
+      нед: 0.3
+      нед.: 0.7
+  лет:
+    exact: true
+    shorteners:
+      л: 0.3
+      л.: 0.7
+
+phys:
+  ватт:
+    shorteners:
+      W: 0.2
+      Вт: 0.2
+      Вт.: 0.2
+      вт: 0.2
+      вт.: 0.2
+  киловатт:
+    shorteners:
+      kW: 0.2
+      кВт: 0.2
+      кВт.: 0.2
+      квт: 0.2
+      квт.: 0.2
+  мегаватт:
+    shorteners:
+      mW: 0.2
+      мВт: 0.2
+      мВт.: 0.2
+      мвт: 0.2
+      мвт.: 0.2
+  вольт:
+    shorteners:
+      V: 0.2
+      В: 0.2
+      В.: 0.2
+      в: 0.2
+      в.: 0.2
+  паскаль:
+    shorteners:
+      Pa: 0.2
+      Па: 0.2
+      Па.: 0.2
+      па: 0.2
+      па.: 0.2
+  градус:
+    shorteners:
+      гр: 0.3
+      гр.: 0.7
+
+month:
+  январь:
+    shorteners:
+      янв: 0.3
+      янв.: 0.7
+  февраль:
+    shorteners:
+      фев: 0.3
+      фев.: 0.7
+  март:
+    same_prob: 0.999
+    shorteners:
+      март: 0.3
+      март.: 0.7
+  апрель:
+    shorteners:
+      апр: 0.3
+      апр.: 0.7
+  май:
+    same_prob: 0.999
+    shorteners:
+      мая: 0.3
+      мая.: 0.7
+  июнь:
+    shorteners:
+      июн: 0.3
+      июн.: 0.7
+  июль:
+    shorteners:
+      июл: 0.3
+      июл.: 0.7
+  август:
+    shorteners:
+      авг: 0.3
+      авг.: 0.7
+  сентябрь:
+    shorteners:
+      сен: 0.3
+      сен.: 0.7
+  октябрь:
+    shorteners:
+      сен: 0.3
+      сен.: 0.7
+  ноябрь:
+    shorteners:
+      ноя: 0.3
+      ноя.: 0.4
+      ноябр.: 0.3
+  декабрь:
+    shorteners:
+      дек: 0.3
+      дек.: 0.7
+
+currency:
+  рубль:
+    shorteners:
+      р.: 0.3
+      руб: 0.3
+      руб.: 0.4
+  доллар:
+    shorteners:
+      $: 0.3
+      дол: 0.3
+      дол.: 0.3
+      долл.: 0.1
+  евро:
+    same_prob: 0.4
+    shorteners:
+      е.: 0.1
+      евр: 0.1
+      евр.: 0.1
+      €: 0.7
+  копейка:
+    shorteners:
+      к.: 0.2
+      коп: 0.4
+      коп.: 0.4
+
+shorteners:
+  в том числе:
+    exact: true
+    shorteners:
+      в т. ч.: 0.9
+      в том ч.: 0.1
+  и так далее:
+    exact: true
+    shorteners:
+      и т д: 0.2
+      и т. д.: 0.2
+      и т.д.: 0.2
+      итд: 0.2
+      итд.: 0.2
+  и тому подобное:
+    exact: true
+    shorteners:
+      и т п: 0.2
+      и т. п.: 0.2
+      и т.п.: 0.2
+      итп: 0.2
+      итп.: 0.2
+  и другиe:
+    exact: true
+    shorteners:
+      и др: 0.5
+      и др.: 0.5
+  и прочиe:
+    exact: true
+    shorteners:
+      и пр: 0.5
+      и пр.: 0.5
+  кандидат технических наук:
+    shorteners:
+      к т н: 0.1
+      к. т. н..: 0.9
+  кандидат медицинских наук:
+    shorteners:
+      к м н: 0.1
+      к. м. н..: 0.9
